@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Manage User</title>
+</head>
+<body class="text-center m-5" style="font-family: 'Times New Roman'">
+<h1>Edit User</h1>
+<form th:action="@{/users/update}" th:object="${user}" method="post"
+      style="max-width:500px; margin:auto">
+    <div class="border border-start">
+        <div>
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{dateOfCreate}">
+
+            <label>E-mail
+                <input class="form-control" readonly type="email" th:field="*{email}">
+            </label><br>
+            <label>Password
+                <input class="form-control" readonly type="text" th:field="*{password}">
+            </label><br>
+            <label>Name
+                <input class="form-control" type="text" th:field="*{name}"
+                       required minlength="2" maxlength="55">
+            </label>
+            <br>
+            <label>Surname
+                <input class="form-control" type="text" th:field="*{surname}"
+                       required minlength="2" maxlength="55">
+            </label><br>
+        </div>
+        <h5>Role:</h5>
+        <div>
+            <label><input type="radio" value="ROLE_USER" th:field="*{role}">
+                USER</label>
+            <label>
+                <input type="radio" value="ROLE_ADMIN" th:field="*{role}">
+                ADMIN</label>
+            <label>
+                <input type="radio" value="ROLE_MODERATOR" th:field="*{role}">
+                MODERATOR</label><br>
+        </div>
+        <div>
+            <label class="h5">
+                Enabled <input type="checkbox" th:field="*{enabled}">
+            </label><br>
+        </div>
+        <div>
+            <input class="btn btn-primary m-1 " type="submit" value="Save">
+            <a class="btn btn-light m-1" th:href="@{/users/all}">Cancel</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>

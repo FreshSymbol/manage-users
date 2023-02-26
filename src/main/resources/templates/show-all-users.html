@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Manage Users</title>
+</head>
+<body style="font-family:'Times New Roman'" class="text-center">
+<div>
+    <h1>List Users</h1>
+    <a class="btn btn-success" th:href="@{/users/new}">Add New User</a>
+</div>
+<table class="table border m-2">
+    <thead class="table-dark h5">
+    <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Role</th>
+        <th>DateOfCreate</th>
+        <th>Enabled</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody class="h5">
+    <tr th:each="user:${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text=" ${user.email}"></td>
+        <td th:text=" ${user.password}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text=" ${user.surname}"></td>
+        <td th:text="${user.role}"></td>
+        <td th:text="${user.dateOfCreate}"></td>
+        <td th:text="${user.enabled}"></td>
+        <td>
+            <a class="btn btn-info m-auto" th:href="@{'edit/'+ ${user.id}}">Edit</a>
+            <a class="btn btn-danger m-auto" th:href="@{'delete/'+ ${user.id}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
